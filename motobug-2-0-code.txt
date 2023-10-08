@@ -1,5 +1,5 @@
 /*
-Car Bot THE DESTROYER by Colleen AF Venable 
+M by Colleen AF Venable 
 Based on the following example: 
 Simple Arduino and HC-SR04 Example by Jonathan Vester: https://www.instructables.com/id/Simple-Ardui­no-and-HC-SR04-Example
 */
@@ -42,13 +42,26 @@ void loop() {
   duration = pulseIn(echoPin, HIGH); 
   distance = (duration/2) / 29.1; 
   
-  if (distance < 10 && distance >= 0) { 
+  if (distance < 20 && distance >= 0) { 
     // stop bot and turn LED on 
     digitalWrite(led, HIGH); 
     ContinuousServo1.write(94);
     ContinuousServo2.write(94); 
     tone(buzzer, 1000); // Send 1KHz sound signal
-  }
+    int turn = rand() % 2 + 1;
+
+    if turn == 1 {
+      ContinuousServo1.write(104);
+      ContinuousServo2.write(104);
+      delay(500);
+      break;
+    }
+    else if turn == 2 {
+      ContinuousServo1.write(84);
+       ContinuousServo2.write(84);
+       delay(500);
+       break;
+    }
   else { 
     digitalWrite(led, LOW); // turn the LED light off
     // go forward 
